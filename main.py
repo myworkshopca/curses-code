@@ -1,5 +1,18 @@
 import curses
 
+def paint_welcome_msg(stdscr, sh, sw):
+
+    # paint instructions.
+    msg = 'Welcome to Curses code program'
+    # starting x axis
+    sx = sw // 2 - len(msg) // 2
+    stdscr.addstr(3, sx, msg)
+    msg = "Using the following key to play:"
+    stdscr.addstr(4, sx, msg)
+    stdscr.addstr(5, sx, "White space: play / pause")
+    stdscr.addstr(6, sx, "c: change the border code")
+    stdscr.addstr(7, sx, "q: exit")
+
 def paint_border(stdscr, uly, ulx, lry, lrx, border_ch):
 
     # paint the top and bottom border, loop x-axis.
@@ -71,6 +84,8 @@ def border(stdscr):
     stdscr.timeout(nodelay_timeout)
 
     sh, sw = stdscr.getmaxyx()
+
+    paint_welcome_msg(stdscr, sh, sw)
 
     # set starting margin.
     m_y, m_x = 2, 5
